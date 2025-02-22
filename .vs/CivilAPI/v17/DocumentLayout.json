@@ -1,0 +1,79 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\diego\\source\\repos\\CivilAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1F4D9A99-6698-48A3-B081-4FBBFB4ED005}|CivilAPI\\CivilAPI.csproj|C:\\Users\\diego\\source\\repos\\CivilAPI\\civilapi\\extensions\\documentextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F4D9A99-6698-48A3-B081-4FBBFB4ED005}|CivilAPI\\CivilAPI.csproj|solutionrelative:civilapi\\extensions\\documentextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F4D9A99-6698-48A3-B081-4FBBFB4ED005}|CivilAPI\\CivilAPI.csproj|C:\\Users\\diego\\source\\repos\\CivilAPI\\civilapi\\extensions\\polyline3dextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F4D9A99-6698-48A3-B081-4FBBFB4ED005}|CivilAPI\\CivilAPI.csproj|solutionrelative:civilapi\\extensions\\polyline3dextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F4D9A99-6698-48A3-B081-4FBBFB4ED005}|CivilAPI\\CivilAPI.csproj|c:\\users\\diego\\source\\repos\\civilapi\\civilapi\\example.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F4D9A99-6698-48A3-B081-4FBBFB4ED005}|CivilAPI\\CivilAPI.csproj|solutionrelative:civilapi\\example.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 114,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Polyline3dExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\diego\\source\\repos\\CivilAPI\\CivilAPI\\Extensions\\Polyline3dExtensions.cs",
+              "RelativeDocumentMoniker": "CivilAPI\\Extensions\\Polyline3dExtensions.cs",
+              "ToolTip": "C:\\Users\\diego\\source\\repos\\CivilAPI\\CivilAPI\\Extensions\\Polyline3dExtensions.cs",
+              "RelativeToolTip": "CivilAPI\\Extensions\\Polyline3dExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-20T21:34:14.23Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DocumentExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\diego\\source\\repos\\CivilAPI\\CivilAPI\\Extensions\\DocumentExtensions.cs",
+              "RelativeDocumentMoniker": "CivilAPI\\Extensions\\DocumentExtensions.cs",
+              "ToolTip": "C:\\Users\\diego\\source\\repos\\CivilAPI\\CivilAPI\\Extensions\\DocumentExtensions.cs",
+              "RelativeToolTip": "CivilAPI\\Extensions\\DocumentExtensions.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwEkAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-20T20:59:35.952Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Example.cs",
+              "DocumentMoniker": "C:\\Users\\diego\\source\\repos\\CivilAPI\\CivilAPI\\Example.cs",
+              "RelativeDocumentMoniker": "CivilAPI\\Example.cs",
+              "ToolTip": "C:\\Users\\diego\\source\\repos\\CivilAPI\\CivilAPI\\Example.cs",
+              "RelativeToolTip": "CivilAPI\\Example.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAowEcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-15T22:19:39.602Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

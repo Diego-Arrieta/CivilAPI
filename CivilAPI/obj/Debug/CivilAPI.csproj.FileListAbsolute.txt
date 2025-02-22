@@ -1,0 +1,12 @@
+C:\Users\diego\source\repos\CivilAPI\CivilAPI\bin\Debug\CivilAPI.dll
+C:\Users\diego\source\repos\CivilAPI\CivilAPI\bin\Debug\CivilAPI.pdb
+C:\Users\diego\source\repos\CivilAPI\CivilAPI\obj\Debug\CivilAPI.csproj.AssemblyReference.cache
+C:\Users\diego\source\repos\CivilAPI\CivilAPI\obj\Debug\CivilAPI.csproj.CoreCompileInputs.cache
+C:\Users\diego\source\repos\CivilAPI\CivilAPI\obj\Debug\CivilAPI.dll
+C:\Users\diego\source\repos\CivilAPI\CivilAPI\obj\Debug\CivilAPI.pdb
+C:\Users\UROGGIO\source\repos\CivilAPI\CivilAPI\bin\Debug\CivilAPI.dll
+C:\Users\UROGGIO\source\repos\CivilAPI\CivilAPI\bin\Debug\CivilAPI.pdb
+C:\Users\UROGGIO\source\repos\CivilAPI\CivilAPI\obj\Debug\CivilAPI.csproj.AssemblyReference.cache
+C:\Users\UROGGIO\source\repos\CivilAPI\CivilAPI\obj\Debug\CivilAPI.csproj.CoreCompileInputs.cache
+C:\Users\UROGGIO\source\repos\CivilAPI\CivilAPI\obj\Debug\CivilAPI.dll
+C:\Users\UROGGIO\source\repos\CivilAPI\CivilAPI\obj\Debug\CivilAPI.pdb
