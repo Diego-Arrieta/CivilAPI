@@ -28,12 +28,17 @@ namespace CivilAPI
 
             // doc.CreateLine(new Point3d(0, 0, 0), new Point3d(10, 10, 0));
 
-            List<Entity> entities = doc.PickEntities();
-            ed.WriteMessage($"There are {entities.Count.ToString()} entities\n");
-            foreach (Entity ent in entities)
-            {                
-                ed.WriteMessage($"BlockName: {ent.BlockName}\n");
-            }
+            List<ObjectId> objectsIds = doc.PickEntities();
+            ed.WriteMessage($"There are {objectsIds.Count.ToString()} entities\n");
+
+            doc.Run(tr =>
+            {
+                foreach (ObjectId objectsId in objectsIds)
+                {
+                    Entity entity = tr.GetObject(objectsId, OpenMode.ForRead) as Entity;
+                    ed.WriteMessage($"BlockName: {entity.BlockName}\n");
+                }
+            });
         }
 
         [CommandMethod("LayoutFromObject")]
@@ -43,10 +48,11 @@ namespace CivilAPI
             Database db = doc.Database;
             Editor ed = doc.Editor;
 
-            Entity entity = doc.PickEntity();
+            ObjectId objectId = doc.PickEntity();
 
             doc.Run(tr =>
             {
+                Entity entity = tr.GetObject(objectId, OpenMode.ForRead) as Entity;
                 BlockTableRecord btr = tr.GetObject(entity.OwnerId, OpenMode.ForRead) as BlockTableRecord;
                 if (btr.IsLayout)
                 {
@@ -62,10 +68,10 @@ namespace CivilAPI
             Database db = doc.Database;
             Editor ed = doc.Editor;
 
-            Entity entity = doc.PickEntityOfType("POLYLINE");
+            ObjectId objectId = doc.PickEntityOfType("POLYLINE");
 
             doc.Run(tr =>
-            {
+            {                
                 // BlockTableRecord
                 BlockTable bt = tr.GetObject(db.BlockTableId, OpenMode.ForRead) as BlockTable;
                 BlockTableRecord btr = tr.GetObject(bt[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord;
@@ -74,7 +80,7 @@ namespace CivilAPI
                 Polyline polyline = new Polyline();
 
                 // Getting the current polyline3d
-                Polyline3d polyline3d = tr.GetObject(entity.ObjectId, OpenMode.ForRead) as Polyline3d;
+                Polyline3d polyline3d = tr.GetObject(objectId, OpenMode.ForRead) as Polyline3d;
                 ObjectId[] vertexIds = polyline3d.Cast<ObjectId>().ToArray();
 
                 // Vertex
@@ -91,6 +97,28 @@ namespace CivilAPI
                 btr.AppendEntity(polyline);
                 tr.AddNewlyCreatedDBObject(polyline, true);
                 ed.WriteMessage("Done\n");
+            });
+        }
+        [CommandMethod("FlattenPolyline2")]
+        public void FlattenPolyline2()
+        {
+            Document doc = Application.DocumentManager.MdiActiveDocument;
+            Database db = doc.Database;
+            Editor ed = doc.Editor;
+
+            ObjectId objectId = doc.PickEntityOfType("POLYLINE");
+
+            doc.Run(tr =>
+            {
+                Polyline3d polyline3d = tr.GetObject(objectId, OpenMode.ForWrite) as Polyline3d;
+                ObjectId[] vertexIds = polyline3d.Cast<ObjectId>().ToArray();
+
+                foreach (ObjectId vertexId in vertexIds)
+                {
+                    PolylineVertex3d vertex = tr.GetObject(vertexId, OpenMode.ForWrite) as PolylineVertex3d;
+                    Point3d newLocation = new Point3d(vertex.Position.X, vertex.Position.Y, 0);
+                    vertex.Position = newLocation;
+                }
             });
         }
     }

@@ -69,9 +69,9 @@ namespace CivilAPI.Extensions
             }
             return result;
         }
-        public static Entity PickEntityOfType(this Document doc, string type, string message = "Select entity: ")
+        public static ObjectId PickEntityOfType(this Document doc, string type, string message = "Select entity: ")
         {
-            Entity result = null;
+            ObjectId result = ObjectId.Null;
 
             // Selection Filter
             TypedValue[] tv = new TypedValue[1];
@@ -86,14 +86,11 @@ namespace CivilAPI.Extensions
 
             // Validation
             if (psr.Status != PromptStatus.OK) throw new NotImplementedException();
-            if (psr.Value.Count == 0) throw new NotImplementedException();
-
-            doc.Run(tr =>
+            if (psr.Value.Count > 0)
             {
-                SelectedObject sObj = psr.Value[0];
-                result = tr.GetObject(sObj.ObjectId, OpenMode.ForWrite) as Entity;
-                doc.Editor.WriteMessage($"A {type} has been selected.\n");
-            });
+                result = psr.Value[0].ObjectId;
+            }            
+
             return result;
         }
         public static void Run(this Document doc, Action<Transaction> action)
