@@ -1,6 +1,7 @@
 ﻿using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
+using Autodesk.AutoCAD.Geometry;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,29 +12,56 @@ namespace CivilAPI.Extensions
 {
     public static class EditorExtensions
     {
-        public static string GetStringData(this Editor ed, string message = "Enter text: ")
+        public static string EnterString(this Editor editor, string message = "Enter text: ")
         {
-            // define variable
-            string result = "";
+            string result = null;
 
-            // Prompt the user using PromptStringOptions
-            PromptStringOptions pso = new PromptStringOptions(message);
-            pso.AllowSpaces = true;
-            
-            // Get the results of the user Input
-            PromptResult res = ed.GetString(pso);
+            PromptStringOptions promptStringOptions = new PromptStringOptions(message);
+            promptStringOptions.AllowSpaces = true;
+            PromptResult promptResult = editor.GetString(promptStringOptions);
 
-            if (res.Status == PromptStatus.OK)
+            if (promptResult.Status == PromptStatus.OK)
             {
-                result = res.StringResult;
-                ed.WriteMessage($"The text is {result}.\n");
+                result = promptResult.StringResult;
             }
             else
             {
-                ed.WriteMessage($"No text entered.\n");
+                editor.WriteMessage($"No text entered.\n");
             }
             return result;
+        }
+        public static Point3d EnterPoint(this Editor editor, string message = "Enter point: ")
+        {
+            Point3d point3d = new Point3d();
 
+            PromptPointOptions promptPointOptions = new PromptPointOptions(message);
+            PromptPointResult promptPointResult = editor.GetPoint(promptPointOptions);
+
+            if (promptPointResult.Status == PromptStatus.OK)
+            {
+                point3d = promptPointResult.Value;
+            }
+            else
+            {
+                editor.WriteMessage($"No point entered.\n");
+            }
+            return point3d;
+        }
+        public static double EnterDistance(this Editor editor, string message = "Enter distance: ")
+        {
+            double distance = new double();
+
+            PromptDoubleResult promptDoubleResult = editor.GetDistance(message);
+
+            if (promptDoubleResult.Status == PromptStatus.OK)
+            {
+                distance = promptDoubleResult.Value;
+            }
+            else
+            {
+                editor.WriteMessage($"No distance entered.\n");
+            }
+            return distance;
         }
     }
 }

@@ -2,6 +2,7 @@
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.Geometry;
+using CivilAPI.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,102 +13,110 @@ namespace CivilAPI.Extensions
 {
     public static class DocumentExtensions
     {
-        public static void CreateLine(this Document doc, Point3d pnt1, Point3d pnt2)
+        public static Entity PickEntity(this Document document, bool forRead = true, string message = "Select entity: ")
         {
-            using (Transaction tr = doc.Database.TransactionManager.StartTransaction())
-            {
-                try
-                {
-                    BlockTable bt = tr.GetObject(doc.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
-                    BlockTableRecord btr = tr.GetObject(bt[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord;
+            Entity entity = null;
 
-                    // Send a message to the user
-                    doc.Editor.WriteMessage("Drawing a Line Object:\n");
-                    Line ln = new Line(pnt1, pnt2);
-                    btr.AppendEntity(ln);
-                    tr.AddNewlyCreatedDBObject(ln, true);
-                    tr.Commit();
-                }
-                catch (System.Exception ex)
+            PromptSelectionOptions promptSelectionOptions = new PromptSelectionOptions();
+            promptSelectionOptions.SingleOnly = true;
+            promptSelectionOptions.MessageForAdding = message;
+
+            PromptSelectionResult promptSelectionResult = document.Editor.GetSelection(promptSelectionOptions);
+
+            if (promptSelectionResult.Status == PromptStatus.Error || promptSelectionResult.Value.Count == 0)
+            {
+                entity = document.PickEntity(forRead, message);
+            }
+            else
+            {
+                OpenMode openMode = forRead ? OpenMode.ForRead : OpenMode.ForWrite;
+                ObjectId objectId = promptSelectionResult.Value[0].ObjectId;                
+                document.Database.Run(tr => entity = tr.GetObject(objectId, openMode) as Entity);
+            }
+            return entity;
+        }
+        public static List<Entity> PickEntities(this Document document, bool forRead = true, string message = "Select entities: ")
+        {
+            List<Entity> entities = new List<Entity>();
+
+            PromptSelectionOptions promptSelectionOptions = new PromptSelectionOptions();
+            promptSelectionOptions.MessageForAdding = message;
+
+            PromptSelectionResult promptSelectionResult = document.Editor.GetSelection(promptSelectionOptions);
+
+            if (promptSelectionResult.Status == PromptStatus.Error || promptSelectionResult.Value.Count == 0)
+            {
+                entities = document.PickEntities(forRead, message);
+            }
+            else
+            {
+                OpenMode openMode = forRead ? OpenMode.ForRead : OpenMode.ForWrite;
+                foreach (SelectedObject selectedObject in promptSelectionResult.Value)
                 {
-                    doc.Editor.WriteMessage($"Error encountered: {ex.Message}");
-                    tr.Abort();
+                    ObjectId objectId = selectedObject.ObjectId;
+                    document.Database.Run(tr => entities.Add(tr.GetObject(objectId, openMode) as Entity));
                 }
             }
-            return;
+            return entities;
         }
-        public static List<ObjectId> PickEntities(this Document doc, string message = "Select entities: ")
+        public static Entity PickEntityOfType(this Document document, string type, bool forRead = true, string message = "Select entity: ")
         {
-            List<ObjectId> results = new List<ObjectId>();
+            Entity entity = null;
 
-            // Selected Options
-            PromptSelectionResult psr = doc.Editor.GetSelection();
+            TypedValue[] typedValue = new TypedValue[1];
+            typedValue.SetValue(new TypedValue((int)DxfCode.Start, type), 0);
+            SelectionFilter selectionFilter = new SelectionFilter(typedValue);
 
-            if (psr.Status == PromptStatus.OK && psr.Value.Count > 0)
+            PromptSelectionOptions promptSelectionOptions = new PromptSelectionOptions();
+            promptSelectionOptions.SingleOnly = true;
+            promptSelectionOptions.MessageForAdding = message;
+
+            PromptSelectionResult promptSelectionResult = document.Editor.GetSelection(promptSelectionOptions, selectionFilter);
+
+            if (promptSelectionResult.Status == PromptStatus.Error || promptSelectionResult.Value.Count == 0)
             {
-                foreach (SelectedObject sObj in psr.Value)
-                {
-                    results.Add(sObj.ObjectId);                    
-                }
-            }            
-            return results;
-        }
-        public static ObjectId PickEntity(this Document doc, string message = "Select entity: ")
-        {
-            ObjectId result = ObjectId.Null;
-
-            // Prompt Selection Options
-            PromptSelectionOptions pso = new PromptSelectionOptions();
-            pso.SingleOnly = true;
-            pso.MessageForAdding = message;
-            PromptSelectionResult psr = doc.Editor.GetSelection(pso);
-
-            if (psr.Status == PromptStatus.OK && psr.Value.Count > 0)
-            {
-                result = psr.Value[0].ObjectId;
-                return result;
+                entity = document.PickEntityOfType(type, forRead, message);
             }
-            return result;
+            else
+            {
+                OpenMode openMode = forRead ? OpenMode.ForRead : OpenMode.ForWrite;
+                ObjectId objectId = promptSelectionResult.Value[0].ObjectId;
+                document.Database.Run(tr => entity = tr.GetObject(objectId, openMode) as Entity);
+            }
+            return entity;
         }
-        public static ObjectId PickEntityOfType(this Document doc, string type, string message = "Select entity: ")
+        public static List<Entity> PickEntitiesOfType(this Document document, string type, bool forRead = true, string message = "Select entity: ")
         {
-            ObjectId result = ObjectId.Null;
+            List<Entity> entities = new List<Entity>();
 
-            // Selection Filter
-            TypedValue[] tv = new TypedValue[1];
-            tv.SetValue(new TypedValue((int)DxfCode.Start, type), 0);
-            SelectionFilter filter = new SelectionFilter(tv);
+            TypedValue[] typedValue = new TypedValue[1];
+            typedValue.SetValue(new TypedValue((int)DxfCode.Start, type), 0);
+            SelectionFilter selectionFilter = new SelectionFilter(typedValue);
 
-            // Prompt Selection Options
-            PromptSelectionOptions pso = new PromptSelectionOptions();
-            pso.SingleOnly = true;
-            pso.MessageForAdding = message;
-            PromptSelectionResult psr = doc.Editor.GetSelection(pso, filter);
+            PromptSelectionOptions promptSelectionOptions = new PromptSelectionOptions();
+            promptSelectionOptions.MessageForAdding = message;
 
-            // Validation
-            if (psr.Status != PromptStatus.OK) throw new NotImplementedException();
-            if (psr.Value.Count > 0)
+            PromptSelectionResult promptSelectionResult = document.Editor.GetSelection(promptSelectionOptions, selectionFilter);
+
+            if (promptSelectionResult.Status == PromptStatus.Error || promptSelectionResult.Value.Count == 0)
             {
-                result = psr.Value[0].ObjectId;
-            }            
-
-            return result;
+                entities = document.PickEntitiesOfType(type, forRead, message);
+            }
+            else
+            {
+                OpenMode openMode = forRead ? OpenMode.ForRead : OpenMode.ForWrite;
+                foreach (SelectedObject selectedObject in promptSelectionResult.Value)
+                {
+                    ObjectId objectId = selectedObject.ObjectId;
+                    document.Database.Run(tr => entities.Add(tr.GetObject(objectId, openMode) as Entity));
+                }
+            }
+            return entities;
         }
-        public static void Run(this Document doc, Action<Transaction> action)
-        {          
-            using (Transaction tr = doc.Database.TransactionManager.StartTransaction())
-            {
-                try
-                {
-                    action.Invoke(tr);
-                    tr.Commit();
-                }
-                catch (System.Exception ex)
-                {
-                    tr.Abort();
-                    doc.Editor.WriteMessage($"Error encountered: {ex.ToString()}\n");
-                }
-            }                  
+        public static T PickWrapper<T>(this Document document, string type, bool forRead = true, string message = "Select entity: ") where T : class, IElementWrapper
+        {
+            Entity entity = document.PickEntityOfType(type, forRead, message);
+            return Activator.CreateInstance(typeof(T), entity) as T ?? throw new InvalidOperationException();
         }
     }
 }
