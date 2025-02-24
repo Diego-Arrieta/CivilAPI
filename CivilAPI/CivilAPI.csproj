@@ -46,12 +46,15 @@
     </Reference>
     <Reference Include="AecBaseMgd">
       <HintPath>..\..\..\..\..\..\Program Files\Autodesk\AutoCAD 2024\AecBaseMgd.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="AeccDbMgd">
       <HintPath>..\..\..\..\..\..\Program Files\Autodesk\AutoCAD 2024\C3D\AeccDbMgd.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="AecPropDataMgd">
       <HintPath>..\..\..\..\..\..\Program Files\Autodesk\AutoCAD 2024\ACA\AecPropDataMgd.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
