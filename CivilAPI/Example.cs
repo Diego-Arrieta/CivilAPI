@@ -27,7 +27,7 @@ namespace CivilAPI
             Editor editor = document.Editor;
 
             Entity entity = document.PickEntity();
-            Layout layout = database.GetLayout(entity);
+            Layout layout = entity.GetLayout();
             editor.WriteMessage(layout.LayoutName);
         }
         [CommandMethod("FlattenPolyline")]
@@ -62,7 +62,7 @@ namespace CivilAPI
             Editor editor = document.Editor;
 
             Entity entity = document.PickEntity();
-            Layout layout = database.GetLayout(entity);
+            Layout layout = entity.GetLayout();
 
             database.Run(tr =>
             {

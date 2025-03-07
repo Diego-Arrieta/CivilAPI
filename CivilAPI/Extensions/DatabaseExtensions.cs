@@ -31,21 +31,6 @@ namespace CivilAPI.Extensions
                 }
             }
         }
-        public static Layout GetLayout(this Database database, Entity entity)
-        {
-            Layout layout = null;
-
-            database.Run(tr =>
-            {
-                BlockTableRecord blockTableRecord = tr.GetObject(entity.OwnerId, OpenMode.ForRead) as BlockTableRecord;
-                if (blockTableRecord.IsLayout)
-                {
-                    layout = tr.GetObject(blockTableRecord.LayoutId, OpenMode.ForRead) as Layout;
-                }
-            });
-
-            return layout;
-        }
         public static List<PropertySetDefinition> GetPropertySetDefinitions(this Database database)
         {
             List<PropertySetDefinition> propertySetDefinitions = new List<PropertySetDefinition>();

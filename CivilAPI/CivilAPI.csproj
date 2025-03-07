@@ -71,6 +71,7 @@
     <Compile Include="Extensions\DatabaseExtensions.cs" />
     <Compile Include="Extensions\DocumentExtensions.cs" />
     <Compile Include="Extensions\EditorExtensions.cs" />
+    <Compile Include="Extensions\EntityExtensions.cs" />
     <Compile Include="Forms\PropertySetsForm.cs">
       <SubType>Form</SubType>
     </Compile>
