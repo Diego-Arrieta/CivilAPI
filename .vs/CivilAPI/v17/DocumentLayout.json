@@ -1,7 +1,20 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\diego\\source\\repos\\CivilAPI\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1F4D9A99-6698-48A3-B081-4FBBFB4ED005}|CivilAPI\\CivilAPI.csproj|c:\\users\\diego\\source\\repos\\civilapi\\civilapi\\extensions\\databaseextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F4D9A99-6698-48A3-B081-4FBBFB4ED005}|CivilAPI\\CivilAPI.csproj|solutionrelative:civilapi\\extensions\\databaseextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F4D9A99-6698-48A3-B081-4FBBFB4ED005}|CivilAPI\\CivilAPI.csproj|c:\\users\\diego\\source\\repos\\civilapi\\civilapi\\extensions\\blocktablerecordextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F4D9A99-6698-48A3-B081-4FBBFB4ED005}|CivilAPI\\CivilAPI.csproj|solutionrelative:civilapi\\extensions\\blocktablerecordextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F4D9A99-6698-48A3-B081-4FBBFB4ED005}|CivilAPI\\CivilAPI.csproj|c:\\users\\diego\\source\\repos\\civilapi\\civilapi\\extensions\\entityextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1F4D9A99-6698-48A3-B081-4FBBFB4ED005}|CivilAPI\\CivilAPI.csproj|solutionrelative:civilapi\\extensions\\entityextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
@@ -9,8 +22,47 @@
       "DocumentGroups": [
         {
           "DockedHeight": 114,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DatabaseExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\diego\\source\\repos\\CivilAPI\\CivilAPI\\Extensions\\DatabaseExtensions.cs",
+              "RelativeDocumentMoniker": "CivilAPI\\Extensions\\DatabaseExtensions.cs",
+              "ToolTip": "C:\\Users\\diego\\source\\repos\\CivilAPI\\CivilAPI\\Extensions\\DatabaseExtensions.cs",
+              "RelativeToolTip": "CivilAPI\\Extensions\\DatabaseExtensions.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T03:20:52.155Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BlockTableRecordExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\diego\\source\\repos\\CivilAPI\\CivilAPI\\Extensions\\BlockTableRecordExtensions.cs",
+              "RelativeDocumentMoniker": "CivilAPI\\Extensions\\BlockTableRecordExtensions.cs",
+              "ToolTip": "C:\\Users\\diego\\source\\repos\\CivilAPI\\CivilAPI\\Extensions\\BlockTableRecordExtensions.cs",
+              "RelativeToolTip": "CivilAPI\\Extensions\\BlockTableRecordExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T03:20:47.557Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EntityExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\diego\\source\\repos\\CivilAPI\\CivilAPI\\Extensions\\EntityExtensions.cs",
+              "RelativeDocumentMoniker": "CivilAPI\\Extensions\\EntityExtensions.cs",
+              "ToolTip": "C:\\Users\\diego\\source\\repos\\CivilAPI\\CivilAPI\\Extensions\\EntityExtensions.cs",
+              "RelativeToolTip": "CivilAPI\\Extensions\\EntityExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-08T03:05:58.206Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
