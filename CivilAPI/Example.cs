@@ -5,15 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using Autodesk.Aec.PropertyData.DatabaseServices;
 using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.Runtime;
+using Autodesk.Aec.PropertyData.DatabaseServices;
+using Civil = Autodesk.Civil.DatabaseServices;
+using CivilApp = Autodesk.Civil.ApplicationServices;
 using CivilAPI.Extensions;
 using CivilAPI.Forms;
 using CivilAPI.Wrappers;
+using Entity = Autodesk.AutoCAD.DatabaseServices.Entity;
 
 namespace CivilAPI
 {
@@ -61,7 +64,7 @@ namespace CivilAPI
             Database database = document.Database;
             Editor editor = document.Editor;
 
-            Entity entity = document.PickEntity();
+            Autodesk.AutoCAD.DatabaseServices.Entity entity = document.PickEntity();
             Layout layout = entity.GetLayout();
 
             database.Run(tr =>
@@ -78,6 +81,37 @@ namespace CivilAPI
             Editor editor = document.Editor;
 
             document.PickEntitiesOfType("CIRCLE");
+        }
+        [CommandMethod("SelectPipeNetwork")]
+        public void SelectPipeNetwork()
+        {
+            Document document = Application.DocumentManager.MdiActiveDocument;
+            Database database = document.Database;
+            Editor editor = document.Editor;
+
+            Civil.Pipe pipe = document.PickEntityOfType("AECC_PIPE") as Civil.Pipe;
+
+            database.Run(tr =>
+            {
+                Civil.Network pipeNetwork = tr.GetObject(pipe.NetworkId, OpenMode.ForRead) as Civil.Network;
+     
+                var structureIdCollection = pipeNetwork.GetStructureIds();
+
+                foreach (ObjectId structureId in structureIdCollection)
+                {
+                    Civil.Structure structure = tr.GetObject(structureId, OpenMode.ForWrite) as Civil.Structure;
+
+                    double pipeLowest = structure.PipeLowestBottomDepth;
+                    double rimElevation = structure.RimElevation;
+                    double sumpElevation = structure.SumpElevation;
+
+                    if (sumpElevation != rimElevation - pipeLowest)
+                    {
+                        structure.SumpElevation = rimElevation - pipeLowest;
+                        editor.WriteMessage($"{structure.Name} | {sumpElevation.ToString()} => {structure.SumpElevation.ToString()}\n");
+                    }                                        
+                }
+            });
         }
     }
 }
