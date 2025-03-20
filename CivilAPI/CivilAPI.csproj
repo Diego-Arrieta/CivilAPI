@@ -53,6 +53,27 @@
     <Reference Include="AecPropDataMgd">
       <HintPath>..\..\..\..\..\..\Program Files\Autodesk\AutoCAD 2024\ACA\AecPropDataMgd.dll</HintPath>
     </Reference>
+    <Reference Include="Autodesk.Map.Platform">
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\AutoCAD 2024\Map\Autodesk.Map.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="OSGeo.FDO">
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\AutoCAD 2024\Map\bin\FDO\OSGeo.FDO.dll</HintPath>
+    </Reference>
+    <Reference Include="OSGeo.FDO.Common">
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\AutoCAD 2024\Map\bin\FDO\OSGeo.FDO.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="OSGeo.FDO.Geometry">
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\AutoCAD 2024\Map\bin\FDO\OSGeo.FDO.Geometry.dll</HintPath>
+    </Reference>
+    <Reference Include="OSGeo.MapGuide.Foundation">
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\AutoCAD 2024\Map\bin\GisPlatform\OSGeo.MapGuide.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="OSGeo.MapGuide.Geometry">
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\AutoCAD 2024\Map\bin\GisPlatform\OSGeo.MapGuide.Geometry.dll</HintPath>
+    </Reference>
+    <Reference Include="OSGeo.MapGuide.PlatformBase">
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\AutoCAD 2024\Map\bin\GisPlatform\OSGeo.MapGuide.PlatformBase.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
